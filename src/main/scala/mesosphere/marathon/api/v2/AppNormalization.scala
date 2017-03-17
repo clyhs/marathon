@@ -51,10 +51,8 @@ object AppNormalization {
           throw SerializationFailedException("cannot specify both portMappings and docker.portMappings")
         case (false, true) =>
           container.portMappings
-        case (true, false) =>
+        case (true, _) =>
           Option(dockerPortMappings)
-        case _ =>
-          None
       }
 
     container.docker.flatMap(_.portMappings) match {
